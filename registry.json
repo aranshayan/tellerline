@@ -9,7 +9,9 @@
       "title": "Money helpers",
       "description": "Decimal-safe parsing, formatting and minor-unit conversion for money, built on Intl and BigInt.",
       "author": "Aran Shayan <https://aranshayan.com>",
-      "categories": ["money"],
+      "categories": [
+        "money"
+      ],
       "files": [
         {
           "path": "registry/tellerline/lib/money.ts",
@@ -23,8 +25,13 @@
       "title": "Money Input",
       "description": "A money field that groups as you type, keeps the caret in place, never rounds, and returns a decimal string.",
       "author": "Aran Shayan <https://aranshayan.com>",
-      "categories": ["money", "forms"],
-      "registryDependencies": ["utils"],
+      "categories": [
+        "money",
+        "forms"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
       "files": [
         {
           "path": "registry/tellerline/money-input/money-input.tsx",
@@ -37,17 +44,78 @@
       ]
     },
     {
+      "name": "approval",
+      "type": "registry:lib",
+      "title": "Approval rules",
+      "description": "Maker-checker rules as plain functions: no self-approval, distinct approvers, role checks and exact amount thresholds. Run them on the server too.",
+      "author": "Aran Shayan <https://aranshayan.com>",
+      "categories": [
+        "approvals"
+      ],
+      "files": [
+        {
+          "path": "registry/tellerline/lib/approval.ts",
+          "type": "registry:lib"
+        }
+      ]
+    },
+    {
       "name": "audit-timeline",
       "type": "registry:ui",
       "title": "Audit Timeline",
       "description": "Who did what and when, grouped by day in any time zone, with field-level before and after values.",
       "author": "Aran Shayan <https://aranshayan.com>",
-      "categories": ["audit", "data display"],
-      "registryDependencies": ["utils"],
+      "categories": [
+        "audit",
+        "data display"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
       "files": [
         {
           "path": "registry/tellerline/audit-timeline/audit-timeline.tsx",
           "type": "registry:ui"
+        },
+        {
+          "path": "registry/tellerline/change-list/change-list.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "registry/tellerline/lib/time.ts",
+          "type": "registry:lib"
+        }
+      ]
+    },
+    {
+      "name": "maker-checker",
+      "type": "registry:ui",
+      "title": "Maker-checker",
+      "description": "Request, review and approve a change with a second pair of eyes. Shows progress, what would change, and a reason when the viewer cannot act.",
+      "author": "Aran Shayan <https://aranshayan.com>",
+      "categories": [
+        "approvals",
+        "forms"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "registry/tellerline/maker-checker/maker-checker.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "registry/tellerline/change-list/change-list.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "registry/tellerline/lib/approval.ts",
+          "type": "registry:lib"
+        },
+        {
+          "path": "registry/tellerline/lib/time.ts",
+          "type": "registry:lib"
         }
       ]
     }
