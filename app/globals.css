@@ -1,0 +1,114 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+/*
+ * The components only use the standard shadcn tokens, so they take on the look of whatever app installs them.
+ * This file is the docs site's own theme: warm paper and charcoal with a clay accent.
+ * Text colours meet WCAG AA on background and card in both themes.
+ */
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-brand: var(--brand);
+  --font-sans: var(--font-archivo), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-plex-mono), ui-monospace, monospace;
+  --font-serif: var(--font-newsreader), Georgia, serif;
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+}
+
+:root {
+  --radius: 0.5rem;
+  --background: #f5f2ea;
+  --foreground: #171614;
+  --card: #fdfbf7;
+  --card-foreground: #171614;
+  --popover: #fdfbf7;
+  --popover-foreground: #171614;
+  --primary: #171614;
+  --primary-foreground: #f5f2ea;
+  --secondary: #ebe6da;
+  --secondary-foreground: #171614;
+  --muted: #ebe6da;
+  --muted-foreground: #5f5b53;
+  --accent: #ebe6da;
+  --accent-foreground: #171614;
+  --destructive: #b0281d;
+  --border: #e0dbcf;
+  --input: #cfc9bb;
+  --ring: #b0481f;
+  --brand: #b0481f;
+}
+
+.dark {
+  --background: #151412;
+  --foreground: #f3efe6;
+  --card: #1e1d1a;
+  --card-foreground: #f3efe6;
+  --popover: #1e1d1a;
+  --popover-foreground: #f3efe6;
+  --primary: #f3efe6;
+  --primary-foreground: #151412;
+  --secondary: #2b2926;
+  --secondary-foreground: #f3efe6;
+  --muted: #2b2926;
+  --muted-foreground: #a8a294;
+  --accent: #2b2926;
+  --accent-foreground: #f3efe6;
+  --destructive: #f4a999;
+  --border: #2e2c28;
+  --input: #45423b;
+  --ring: #e0805f;
+  --brand: #e0805f;
+  color-scheme: dark;
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+  }
+  ::selection {
+    background: color-mix(in oklab, var(--brand) 30%, transparent);
+  }
+  :focus-visible {
+    outline: 2px solid var(--ring);
+    outline-offset: 2px;
+  }
+  h1,
+  h2,
+  h3 {
+    text-wrap: balance;
+  }
+  p {
+    text-wrap: pretty;
+  }
+}
+
+.accent-word {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 400;
+}
