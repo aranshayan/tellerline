@@ -1,0 +1,55 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry.json",
+  "name": "tellerline",
+  "homepage": "https://tellerline.vercel.app",
+  "items": [
+    {
+      "name": "money",
+      "type": "registry:lib",
+      "title": "Money helpers",
+      "description": "Decimal-safe parsing, formatting and minor-unit conversion for money, built on Intl and BigInt.",
+      "author": "Aran Shayan <https://aranshayan.com>",
+      "categories": ["money"],
+      "files": [
+        {
+          "path": "registry/tellerline/lib/money.ts",
+          "type": "registry:lib"
+        }
+      ]
+    },
+    {
+      "name": "money-input",
+      "type": "registry:ui",
+      "title": "Money Input",
+      "description": "A money field that groups as you type, keeps the caret in place, never rounds, and returns a decimal string.",
+      "author": "Aran Shayan <https://aranshayan.com>",
+      "categories": ["money", "forms"],
+      "registryDependencies": ["utils"],
+      "files": [
+        {
+          "path": "registry/tellerline/money-input/money-input.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "registry/tellerline/lib/money.ts",
+          "type": "registry:lib"
+        }
+      ]
+    },
+    {
+      "name": "audit-timeline",
+      "type": "registry:ui",
+      "title": "Audit Timeline",
+      "description": "Who did what and when, grouped by day in any time zone, with field-level before and after values.",
+      "author": "Aran Shayan <https://aranshayan.com>",
+      "categories": ["audit", "data display"],
+      "registryDependencies": ["utils"],
+      "files": [
+        {
+          "path": "registry/tellerline/audit-timeline/audit-timeline.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    }
+  ]
+}
