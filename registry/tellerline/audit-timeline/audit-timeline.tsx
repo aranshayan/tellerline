@@ -1,15 +1,11 @@
 import * as React from "react"
 
 import { cn } from "@/lib/utils"
+import { ChangeList, defaultFormatValue, type Change } from "@/registry/tellerline/change-list/change-list"
+import { formatRelative } from "@/registry/tellerline/lib/time"
 
-export type AuditChange = {
-  /** Machine name of the field, passed to `formatValue`. */
-  field: string
-  /** What people see. Defaults to `field`. */
-  label?: string
-  from?: unknown
-  to?: unknown
-}
+/** One field that changed. `from` or `to` can be left out for a value that was added or removed. */
+export type AuditChange = Change
 
 export type AuditEvent = {
   id: string
@@ -55,33 +51,9 @@ const toneClass: Record<NonNullable<AuditEvent["tone"]>, string> = {
   warning: "bg-amber-500 dark:bg-amber-400",
 }
 
-const defaultFormat = (_field: string, value: unknown): React.ReactNode => {
-  if (value === null || value === undefined || value === "") return <span className="text-muted-foreground italic">empty</span>
-  if (typeof value === "boolean") return value ? "Yes" : "No"
-  if (value instanceof Date) return value.toISOString()
-  return String(value)
-}
-
 function dayKey(date: Date, locale: string, timeZone?: string) {
   // en-CA gives YYYY-MM-DD, so days sort and compare as strings in the chosen time zone.
   return new Intl.DateTimeFormat("en-CA", { timeZone, year: "numeric", month: "2-digit", day: "2-digit" }).format(date) + locale
-}
-
-const UNITS: [Intl.RelativeTimeFormatUnit, number][] = [
-  ["year", 31536000],
-  ["month", 2592000],
-  ["week", 604800],
-  ["day", 86400],
-  ["hour", 3600],
-  ["minute", 60],
-  ["second", 1],
-]
-
-function relative(date: Date, now: Date, locale: string) {
-  const seconds = Math.round((date.getTime() - now.getTime()) / 1000)
-  const rtf = new Intl.RelativeTimeFormat(locale, { numeric: "auto" })
-  for (const [unit, size] of UNITS) if (Math.abs(seconds) >= size || unit === "second") return rtf.format(Math.round(seconds / size), unit)
-  return ""
 }
 
 /**
@@ -94,7 +66,7 @@ export function AuditTimeline({
   timeZone,
   now,
   order = "newest",
-  formatValue = defaultFormat,
+  formatValue = defaultFormatValue,
   collapseAfter = 4,
   headingLevel = 3,
   empty = "No activity yet.",
@@ -153,7 +125,7 @@ export function AuditTimeline({
                   <p className="text-muted-foreground mt-0.5 text-xs">
                     <time dateTime={event.date.toISOString()} title={fullFormat.format(event.date)}>
                       {timeFormat.format(event.date)}
-                      {now && <> · {relative(event.date, now, locale)}</>}
+                      {now && <> · {formatRelative(event.date, now, locale)}</>}
                     </time>
                   </p>
                   {event.note && <div className="text-muted-foreground mt-2.5 border-s-2 ps-3">{event.note}</div>}
@@ -193,40 +165,6 @@ export function AuditTimeline({
           </ol>
         </section>
       ))}
-    </div>
-  )
-}
-
-function ChangeList({ changes, formatValue }: { changes: AuditChange[]; formatValue: NonNullable<AuditTimelineProps["formatValue"]> }) {
-  return (
-    // A container query, so the label sits beside the values only where the list itself has room.
-    <div className="@container">
-      <dl className="bg-muted/50 grid grid-cols-1 gap-x-4 rounded-md px-3 py-2 text-xs @sm:grid-cols-[minmax(6rem,auto)_1fr] @sm:gap-y-1.5">
-        {changes.map((change) => (
-          <React.Fragment key={change.field}>
-            <dt className="text-muted-foreground mt-2 first:mt-0 @sm:mt-0">{change.label ?? change.field}</dt>
-            <dd className="flex min-w-0 flex-wrap items-baseline gap-x-2 tabular-nums">
-              {"from" in change && (
-                <del className="text-muted-foreground decoration-destructive/60">
-                  <span className="sr-only">from </span>
-                  {formatValue(change.field, change.from)}
-                </del>
-              )}
-              {"from" in change && "to" in change && (
-                <span aria-hidden className="text-muted-foreground">
-                  →
-                </span>
-              )}
-              {"to" in change && (
-                <ins className="text-foreground no-underline">
-                  <span className="sr-only">to </span>
-                  {formatValue(change.field, change.to)}
-                </ins>
-              )}
-            </dd>
-          </React.Fragment>
-        ))}
-      </dl>
     </div>
   )
 }
