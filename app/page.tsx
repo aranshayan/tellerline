@@ -21,7 +21,7 @@ export default function Home() {
           The parts of a banking screen that are <span className="accent-word text-brand">easy to get wrong</span>.
         </h1>
         <p className="text-muted-foreground max-w-2xl text-lg leading-relaxed">
-          Tellerline is a small set of accessible components for money, audit trails and approvals. Amounts stay exact
+          Tellerline is a small set of accessible components for money and audit trails, with approvals next. Amounts stay exact
           decimal strings from keystroke to API. Install them with the shadcn CLI and the code is yours to change.
         </p>
         <div className="flex flex-wrap gap-3 font-mono text-sm">
