@@ -150,23 +150,39 @@ export function AuditTimeline({
                     {event.actor.role && <span className="text-muted-foreground"> ({event.actor.role})</span>}{" "}
                     <span className="text-foreground">{event.action}</span>
                   </p>
-                  <p className="text-muted-foreground text-xs">
+                  <p className="text-muted-foreground mt-0.5 text-xs">
                     <time dateTime={event.date.toISOString()} title={fullFormat.format(event.date)}>
                       {timeFormat.format(event.date)}
                       {now && <> · {relative(event.date, now, locale)}</>}
                     </time>
                   </p>
-                  {event.note && <div className="text-muted-foreground mt-2 border-s-2 ps-3">{event.note}</div>}
+                  {event.note && <div className="text-muted-foreground mt-2.5 border-s-2 ps-3">{event.note}</div>}
                   {changes.length > 0 && (
-                    <div className="mt-2">
+                    <div className="mt-2.5">
                       <ChangeList changes={shown} formatValue={formatValue} />
                       {folded.length > 0 && (
-                        <details className="group mt-1">
-                          <summary className="text-muted-foreground hover:text-foreground w-fit cursor-pointer text-xs underline-offset-4 hover:underline">
-                            <span className="group-open:hidden">Show {folded.length} more {folded.length === 1 ? "change" : "changes"}</span>
+                        <details className="group mt-2">
+                          <summary className="text-muted-foreground hover:text-foreground flex w-fit cursor-pointer list-none items-center gap-1.5 rounded-sm text-xs [&::-webkit-details-marker]:hidden">
+                            <svg
+                              aria-hidden
+                              viewBox="0 0 16 16"
+                              fill="none"
+                              stroke="currentColor"
+                              strokeWidth="1.5"
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              className="size-3 transition-transform group-open:rotate-90"
+                            >
+                              <path d="m6 4 4 4-4 4" />
+                            </svg>
+                            <span className="group-open:hidden">
+                              Show {folded.length} more {folded.length === 1 ? "change" : "changes"}
+                            </span>
                             <span className="hidden group-open:inline">Show fewer changes</span>
                           </summary>
-                          <ChangeList changes={folded} formatValue={formatValue} />
+                          <div className="mt-2">
+                            <ChangeList changes={folded} formatValue={formatValue} />
+                          </div>
                         </details>
                       )}
                     </div>
@@ -181,39 +197,36 @@ export function AuditTimeline({
   )
 }
 
-function ChangeList({
-  changes,
-  formatValue,
-}: {
-  changes: AuditChange[]
-  formatValue: NonNullable<AuditTimelineProps["formatValue"]>
-}) {
+function ChangeList({ changes, formatValue }: { changes: AuditChange[]; formatValue: NonNullable<AuditTimelineProps["formatValue"]> }) {
   return (
-    <dl className="bg-muted/50 grid grid-cols-[minmax(6rem,auto)_1fr] gap-x-4 gap-y-1.5 rounded-md px-3 py-2 text-xs">
-      {changes.map((change) => (
-        <React.Fragment key={change.field}>
-          <dt className="text-muted-foreground">{change.label ?? change.field}</dt>
-          <dd className="flex min-w-0 flex-wrap items-baseline gap-x-2 tabular-nums">
-            {"from" in change && (
-              <del className="text-muted-foreground decoration-destructive/60">
-                <span className="sr-only">from </span>
-                {formatValue(change.field, change.from)}
-              </del>
-            )}
-            {"from" in change && "to" in change && (
-              <span aria-hidden className="text-muted-foreground">
-                →
-              </span>
-            )}
-            {"to" in change && (
-              <ins className="text-foreground no-underline">
-                <span className="sr-only">to </span>
-                {formatValue(change.field, change.to)}
-              </ins>
-            )}
-          </dd>
-        </React.Fragment>
-      ))}
-    </dl>
+    // A container query, so the label sits beside the values only where the list itself has room.
+    <div className="@container">
+      <dl className="bg-muted/50 grid grid-cols-1 gap-x-4 rounded-md px-3 py-2 text-xs @sm:grid-cols-[minmax(6rem,auto)_1fr] @sm:gap-y-1.5">
+        {changes.map((change) => (
+          <React.Fragment key={change.field}>
+            <dt className="text-muted-foreground mt-2 first:mt-0 @sm:mt-0">{change.label ?? change.field}</dt>
+            <dd className="flex min-w-0 flex-wrap items-baseline gap-x-2 tabular-nums">
+              {"from" in change && (
+                <del className="text-muted-foreground decoration-destructive/60">
+                  <span className="sr-only">from </span>
+                  {formatValue(change.field, change.from)}
+                </del>
+              )}
+              {"from" in change && "to" in change && (
+                <span aria-hidden className="text-muted-foreground">
+                  →
+                </span>
+              )}
+              {"to" in change && (
+                <ins className="text-foreground no-underline">
+                  <span className="sr-only">to </span>
+                  {formatValue(change.field, change.to)}
+                </ins>
+              )}
+            </dd>
+          </React.Fragment>
+        ))}
+      </dl>
+    </div>
   )
 }

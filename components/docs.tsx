@@ -16,7 +16,7 @@ export function Install({ item }: { item: string }) {
   const command = installCommand(item)
   return (
     <div className="bg-card flex items-center gap-3 rounded-lg border py-2 ps-4 pe-2">
-      <code className="min-w-0 flex-1 overflow-x-auto font-mono text-[13px] whitespace-nowrap">{command}</code>
+      <code className="min-w-0 flex-1 overflow-x-auto font-mono text-[13px] whitespace-nowrap [mask-image:linear-gradient(to_right,black_88%,transparent)]">{command}</code>
       <CopyButton text={command} label="Copy install command" />
     </div>
   )

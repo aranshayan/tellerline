@@ -2,7 +2,7 @@ import type { Metadata } from "next"
 
 import { DocPage, DocSection } from "@/components/doc-page"
 import { MoneyInputDemo } from "@/components/demos/money-input-demo"
-import { Code, Install, Notes, Preview, PropsTable } from "@/components/docs"
+import { Code, Install, Notes, PropsTable } from "@/components/docs"
 
 export const metadata: Metadata = {
   title: "Money Input",
@@ -51,9 +51,7 @@ export default function MoneyInputPage() {
       lede="A text input for amounts. It groups digits while you type, keeps the caret where you left it, refuses more decimals than the currency allows, and hands you a decimal string instead of a float."
     >
       <DocSection id="demo" title="Try it">
-        <Preview>
-          <MoneyInputDemo />
-        </Preview>
+        <MoneyInputDemo />
       </DocSection>
 
       <DocSection id="install" title="Install">

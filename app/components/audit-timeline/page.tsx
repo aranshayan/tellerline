@@ -2,7 +2,7 @@ import type { Metadata } from "next"
 
 import { DocPage, DocSection } from "@/components/doc-page"
 import { AuditTimelineDemo } from "@/components/demos/audit-timeline-demo"
-import { Code, Install, Notes, Preview, PropsTable } from "@/components/docs"
+import { Code, Install, Notes, PropsTable } from "@/components/docs"
 
 export const metadata: Metadata = {
   title: "Audit Timeline",
@@ -45,9 +45,7 @@ export default function AuditTimelinePage() {
       lede="The history panel every back-office record needs. Events are grouped by day in the reader's time zone, and each edit is shown as a before and after that a screen reader announces as such."
     >
       <DocSection id="demo" title="Try it">
-        <Preview>
-          <AuditTimelineDemo />
-        </Preview>
+        <AuditTimelineDemo />
         <p className="text-muted-foreground text-sm">
           Switch to Tokyo: the 23:41 rejection moves to the next day, because day headings follow the reader, not the server.
         </p>

@@ -2,7 +2,7 @@ import Link from "next/link"
 
 import { AuditTimelineDemo } from "@/components/demos/audit-timeline-demo"
 import { MoneyInputDemo } from "@/components/demos/money-input-demo"
-import { Install, Preview, SectionLabel } from "@/components/docs"
+import { Install, SectionLabel } from "@/components/docs"
 import { site } from "@/lib/site"
 
 const roadmap = [
@@ -20,15 +20,15 @@ export default function Home() {
         <h1 className="text-4xl font-semibold tracking-tight sm:text-5xl">
           The parts of a banking screen that are <span className="accent-word text-brand">easy to get wrong</span>.
         </h1>
-        <p className="text-muted-foreground max-w-2xl text-lg leading-relaxed">
+        <p className="text-muted-foreground max-w-2xl text-base leading-relaxed sm:text-lg">
           Tellerline is a small set of accessible components for money and audit trails, with approvals next. Amounts stay exact
           decimal strings from keystroke to API. Install them with the shadcn CLI and the code is yours to change.
         </p>
-        <div className="flex flex-wrap gap-3 font-mono text-sm">
-          <Link href="/components/money-input" className="bg-primary text-primary-foreground rounded-md px-4 py-2">
+        <div className="flex flex-wrap gap-2.5 font-mono text-[13px] sm:gap-3 sm:text-sm">
+          <Link href="/components/money-input" className="bg-primary text-primary-foreground rounded-md px-3.5 py-2 hover:opacity-90 sm:px-4">
             Browse components
           </Link>
-          <a href={site.repo} className="hover:bg-muted rounded-md border px-4 py-2">
+          <a href={site.repo} className="hover:bg-muted rounded-md border px-3.5 py-2 sm:px-4">
             Source on GitHub
           </a>
         </div>
@@ -39,7 +39,7 @@ export default function Home() {
           Components
         </h2>
         <div className="grid gap-6 lg:grid-cols-2">
-          <article className="grid min-w-0 grid-cols-1 content-start gap-4">
+          <article className="grid min-w-0 grid-cols-1 content-start gap-4 lg:grid-rows-[auto_auto_1fr_auto]">
             <div className="flex items-baseline justify-between gap-4">
               <h3 className="text-lg font-medium">
                 <Link href="/components/money-input" className="hover:underline underline-offset-4">
@@ -51,12 +51,10 @@ export default function Home() {
             <p className="text-muted-foreground">
               Groups digits as you type, keeps the caret where it was, follows the currency&apos;s decimals and returns a string.
             </p>
-            <Preview>
-              <MoneyInputDemo compact />
-            </Preview>
+            <MoneyInputDemo className="h-full" />
             <Install item="money-input" />
           </article>
-          <article className="grid min-w-0 grid-cols-1 content-start gap-4">
+          <article className="grid min-w-0 grid-cols-1 content-start gap-4 lg:grid-rows-[auto_auto_1fr_auto]">
             <div className="flex items-baseline justify-between gap-4">
               <h3 className="text-lg font-medium">
                 <Link href="/components/audit-timeline" className="hover:underline underline-offset-4">
@@ -68,10 +66,14 @@ export default function Home() {
             <p className="text-muted-foreground">
               Who changed what and when, grouped by day in the reader&apos;s time zone, with every edit shown as before and after.
             </p>
-            {/* It scrolls, so it takes focus for keyboard users. */}
-            <Preview className="max-h-[26rem] overflow-y-auto" tabIndex={0} role="region" aria-label="Audit Timeline example">
-              <AuditTimelineDemo showControls={false} collapseAfter={2} />
-            </Preview>
+            {/* The body scrolls, so it takes focus for keyboard users. */}
+            <AuditTimelineDemo
+              showControls={false}
+              collapseAfter={2}
+              className="h-full"
+              bodyClassName="max-h-[24rem] overflow-y-auto [mask-image:linear-gradient(to_bottom,black_85%,transparent)]"
+              bodyProps={{ tabIndex: 0, role: "region", "aria-label": "Audit Timeline example" }}
+            />
             <Install item="audit-timeline" />
           </article>
         </div>

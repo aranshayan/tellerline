@@ -51,13 +51,15 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         <main id="main" className="mx-auto max-w-5xl px-5 pb-24 sm:px-8">
           {children}
         </main>
-        <footer className="text-muted-foreground mx-auto flex max-w-5xl flex-wrap justify-between gap-2 border-t px-5 py-8 font-mono text-xs sm:px-8">
+        <footer className="text-muted-foreground mx-auto max-w-5xl px-5 font-mono text-xs sm:px-8">
+          <div className="flex flex-wrap justify-between gap-x-6 gap-y-2 border-t py-8">
           <span>
             MIT licensed. Built by <a href={site.author.url} className="hover:text-foreground underline underline-offset-4">{site.author.name}</a>.
           </span>
           <a href={`${site.url}/r/registry.json`} className="hover:text-foreground">
             registry.json
           </a>
+          </div>
         </footer>
       </body>
     </html>
