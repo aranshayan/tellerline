@@ -4,14 +4,14 @@ Accessible React components for banking and back-office apps, installed with the
 
 Most UI kits stop at buttons and dialogs. The screens that move money need parts that are easy to get wrong: an amount field that never rounds, an audit trail that shows days in the reader's time zone, an approval flow with rules about who can approve what. Tellerline is a small, growing set of those parts.
 
-**Docs and live demos:** https://tellerline.vercel.app
+**Docs and live demos:** https://tellerline-ui.vercel.app
 
 ## Components
 
 | Component | What it does |
 | --- | --- |
-| [Money Input](https://tellerline.vercel.app/components/money-input) | Groups digits as you type, keeps the caret in place, follows the currency's decimal places and returns an exact decimal string. |
-| [Audit Timeline](https://tellerline.vercel.app/components/audit-timeline) | Who changed what and when, grouped by day in the reader's time zone, with each edit shown as before and after. |
+| [Money Input](https://tellerline-ui.vercel.app/components/money-input) | Groups digits as you type, keeps the caret in place, follows the currency's decimal places and returns an exact decimal string. |
+| [Audit Timeline](https://tellerline-ui.vercel.app/components/audit-timeline) | Who changed what and when, grouped by day in the reader's time zone, with each edit shown as before and after. |
 | `lib/money` | Parsing, formatting and minor-unit helpers that work on decimal strings and BigInt, never floats. |
 
 ## Install
@@ -19,8 +19,8 @@ Most UI kits stop at buttons and dialogs. The screens that move money need parts
 The project needs shadcn set up already (`npx shadcn@latest init`). Then:
 
 ```bash
-npx shadcn@latest add https://tellerline.vercel.app/r/money-input.json
-npx shadcn@latest add https://tellerline.vercel.app/r/audit-timeline.json
+npx shadcn@latest add https://tellerline-ui.vercel.app/r/money-input.json
+npx shadcn@latest add https://tellerline-ui.vercel.app/r/audit-timeline.json
 ```
 
 The files are copied into your project (`components/ui` and `lib`), so you own them and can change anything.

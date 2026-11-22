@@ -1,7 +1,7 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry.json",
   "name": "tellerline",
-  "homepage": "https://tellerline.vercel.app",
+  "homepage": "https://tellerline-ui.vercel.app",
   "items": [
     {
       "name": "money",

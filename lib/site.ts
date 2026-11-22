@@ -2,7 +2,7 @@
 export const site = {
   name: "Tellerline",
   description: "Accessible React components for banking and back-office apps, installed with the shadcn CLI.",
-  url: (process.env.NEXT_PUBLIC_SITE_URL ?? "https://tellerline.vercel.app").replace(/\/$/, ""),
+  url: (process.env.NEXT_PUBLIC_SITE_URL ?? "https://tellerline-ui.vercel.app").replace(/\/$/, ""),
   repo: "https://github.com/aranshayan/tellerline",
   author: { name: "Aran Shayan", url: "https://aranshayan.com" },
 }
