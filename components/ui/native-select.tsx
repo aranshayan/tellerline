@@ -5,10 +5,10 @@ import { cn } from "@/lib/utils"
 /** A native <select> with the browser arrow replaced by a chevron that has room to breathe. */
 export function NativeSelect({ className, ...props }: React.ComponentProps<"select">) {
   return (
-    <div className="relative inline-flex">
+    <div className="relative inline-flex max-w-full min-w-0">
       <select
         className={cn(
-          "border-input bg-background text-foreground h-8 cursor-pointer appearance-none rounded-md border ps-3 pe-9 text-[13px] shadow-xs outline-none",
+          "border-input bg-background text-foreground h-8 w-full min-w-0 cursor-pointer appearance-none truncate rounded-md border ps-3 pe-9 text-[13px] shadow-xs outline-none",
           "hover:border-muted-foreground/40 focus-visible:border-ring focus-visible:ring-ring/40 focus-visible:ring-[3px]",
           className,
         )}

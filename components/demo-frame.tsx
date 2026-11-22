@@ -31,8 +31,8 @@ export function DemoFrame({
 /** A labelled control in a DemoFrame toolbar. */
 export function ToolbarField({ label, children }: { label: string; children: React.ReactNode }) {
   return (
-    <label className="flex items-center gap-3">
-      <span className="text-muted-foreground font-mono text-xs">{label}</span>
+    <label className="flex max-w-full min-w-0 items-center gap-3">
+      <span className="text-muted-foreground shrink-0 font-mono text-xs">{label}</span>
       {children}
     </label>
   )

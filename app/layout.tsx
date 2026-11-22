@@ -36,11 +36,14 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
             tellerline
           </Link>
           <nav aria-label="Main" className="flex items-center gap-5 font-mono text-[13px]">
-            <Link href="/components/money-input" className="text-muted-foreground hover:text-foreground hidden sm:inline">
+            <Link href="/components/money-input" className="text-muted-foreground hover:text-foreground hidden md:inline">
               Money Input
             </Link>
-            <Link href="/components/audit-timeline" className="text-muted-foreground hover:text-foreground hidden sm:inline">
+            <Link href="/components/audit-timeline" className="text-muted-foreground hover:text-foreground hidden md:inline">
               Audit Timeline
+            </Link>
+            <Link href="/components/maker-checker" className="text-muted-foreground hover:text-foreground hidden md:inline">
+              Maker-checker
             </Link>
             <a href={site.repo} className="text-muted-foreground hover:text-foreground">
               GitHub

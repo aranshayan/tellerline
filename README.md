@@ -12,6 +12,8 @@ Most UI kits stop at buttons and dialogs. The screens that move money need parts
 | --- | --- |
 | [Money Input](https://tellerline-ui.vercel.app/components/money-input) | Groups digits as you type, keeps the caret in place, follows the currency's decimal places and returns an exact decimal string. |
 | [Audit Timeline](https://tellerline-ui.vercel.app/components/audit-timeline) | Who changed what and when, grouped by day in the reader's time zone, with each edit shown as before and after. |
+| [Maker-checker](https://tellerline-ui.vercel.app/components/maker-checker) | A change that needs a second pair of eyes: progress, what would change, and a plain reason when the viewer can't act. |
+| `lib/approval` | The maker-checker rules as plain functions, to run again on the server: no self-approval, distinct approvers, roles and exact amount thresholds. |
 | `lib/money` | Parsing, formatting and minor-unit helpers that work on decimal strings and BigInt, never floats. |
 
 ## Install
@@ -21,6 +23,7 @@ The project needs shadcn set up already (`npx shadcn@latest init`). Then:
 ```bash
 npx shadcn@latest add https://tellerline-ui.vercel.app/r/money-input.json
 npx shadcn@latest add https://tellerline-ui.vercel.app/r/audit-timeline.json
+npx shadcn@latest add https://tellerline-ui.vercel.app/r/maker-checker.json
 ```
 
 The files are copied into your project (`components/ui` and `lib`), so you own them and can change anything.
@@ -52,7 +55,6 @@ export function Amount() {
 
 Planned, not built yet:
 
-- **Maker-checker**: request, review and approve a change, with rules for who may approve what.
 - **As-of table**: a data table that can show any past date, with changed values marked in place.
 - **Reconciliation workbench**: two ledgers side by side, matched by rule or by hand.
 - **Permission-aware forms**: fields that say why they are read-only.
