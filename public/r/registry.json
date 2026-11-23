@@ -118,6 +118,47 @@
           "type": "registry:lib"
         }
       ]
+    },
+    {
+      "name": "as-of",
+      "type": "registry:lib",
+      "title": "As-of history",
+      "description": "Rebuild records at any point in time from their history and compare two points: which rows were added, removed or changed, and which fields.",
+      "author": "Aran Shayan <https://aranshayan.com>",
+      "categories": [
+        "history",
+        "data display"
+      ],
+      "files": [
+        {
+          "path": "registry/tellerline/lib/as-of.ts",
+          "type": "registry:lib"
+        }
+      ]
+    },
+    {
+      "name": "as-of-table",
+      "type": "registry:ui",
+      "title": "As-of table",
+      "description": "A table that shows records as they stood at any past date, with values that changed since then marked in place.",
+      "author": "Aran Shayan <https://aranshayan.com>",
+      "categories": [
+        "history",
+        "data display"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "registry/tellerline/as-of-table/as-of-table.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "registry/tellerline/lib/as-of.ts",
+          "type": "registry:lib"
+        }
+      ]
     }
   ]
 }

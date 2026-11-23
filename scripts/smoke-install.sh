@@ -8,7 +8,7 @@ ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 PORT="${SMOKE_PORT:-3199}"
 WORK="$ROOT/.smoke"
 APP="$WORK/app"
-ITEMS=(money approval money-input audit-timeline maker-checker)
+ITEMS=(money approval as-of money-input audit-timeline maker-checker as-of-table)
 
 rm -rf "$WORK" && mkdir -p "$WORK"
 
@@ -39,10 +39,12 @@ cat >app/page.tsx <<'TSX'
 "use client"
 
 import * as React from "react"
+import { AsOfTable } from "@/components/ui/as-of-table"
 import { AuditTimeline } from "@/components/ui/audit-timeline"
 import { MakerChecker } from "@/components/ui/maker-checker"
 import { MoneyInput } from "@/components/ui/money-input"
 import { canDecide, requiredApprovalsFor } from "@/lib/approval"
+import { endOfDayIn } from "@/lib/as-of"
 import { formatMoney, toMinorUnits } from "@/lib/money"
 
 const maker = { id: "u1", name: "Mina" }
@@ -64,6 +66,13 @@ export default function Page() {
       />
       <MakerChecker request={request} policy={policy} viewer={viewer} timeZone="UTC" onApprove={() => {}} />
       <p>{allowed ? "Daniel can decide" : "Daniel cannot decide"}</p>
+      <AsOfTable
+        caption="Accounts"
+        timeZone="UTC"
+        asOf={endOfDayIn("2026-03-02", "UTC")}
+        columns={[{ key: "name", header: "Account" }, { key: "limit", header: "Limit", align: "end" }]}
+        records={[{ id: "a", history: [{ at: "2026-03-01T09:00:00Z", set: { name: "Acme", limit: "100" } }, { at: "2026-03-03T09:00:00Z", set: { limit: "200" } }] }]}
+      />
     </main>
   )
 }
