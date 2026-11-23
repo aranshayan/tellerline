@@ -2,7 +2,7 @@
 
 Accessible React components for banking and back-office apps, installed with the shadcn CLI.
 
-Most UI kits stop at buttons and dialogs. The screens that move money need parts that are easy to get wrong: an amount field that never rounds, an audit trail that shows days in the reader's time zone, an approval flow with rules about who can approve what. Tellerline is a small, growing set of those parts.
+Most UI kits stop at buttons and dialogs. The screens that move money need parts that are easy to get wrong: an amount field that never rounds, an audit trail that shows days in the reader's time zone, an approval flow with rules about who can approve what, a table that can show last Tuesday. Tellerline is a small, growing set of those parts.
 
 **Docs and live demos:** https://tellerline-ui.vercel.app
 
@@ -13,7 +13,9 @@ Most UI kits stop at buttons and dialogs. The screens that move money need parts
 | [Money Input](https://tellerline-ui.vercel.app/components/money-input) | Groups digits as you type, keeps the caret in place, follows the currency's decimal places and returns an exact decimal string. |
 | [Audit Timeline](https://tellerline-ui.vercel.app/components/audit-timeline) | Who changed what and when, grouped by day in the reader's time zone, with each edit shown as before and after. |
 | [Maker-checker](https://tellerline-ui.vercel.app/components/maker-checker) | A change that needs a second pair of eyes: progress, what would change, and a plain reason when the viewer can't act. |
+| [As-of table](https://tellerline-ui.vercel.app/components/as-of-table) | Records as they stood at any point in time, with values that changed since marked in place and the current value beside them. |
 | `lib/approval` | The maker-checker rules as plain functions, to run again on the server: no self-approval, distinct approvers, roles and exact amount thresholds. |
+| `lib/as-of` | Rebuild records at any point from their history, compare two points, and find the end of a day in any time zone. |
 | `lib/money` | Parsing, formatting and minor-unit helpers that work on decimal strings and BigInt, never floats. |
 
 ## Install
@@ -24,6 +26,7 @@ The project needs shadcn set up already (`npx shadcn@latest init`). Then:
 npx shadcn@latest add https://tellerline-ui.vercel.app/r/money-input.json
 npx shadcn@latest add https://tellerline-ui.vercel.app/r/audit-timeline.json
 npx shadcn@latest add https://tellerline-ui.vercel.app/r/maker-checker.json
+npx shadcn@latest add https://tellerline-ui.vercel.app/r/as-of-table.json
 ```
 
 The files are copied into your project (`components/ui` and `lib`), so you own them and can change anything.
@@ -55,7 +58,6 @@ export function Amount() {
 
 Planned, not built yet:
 
-- **As-of table**: a data table that can show any past date, with changed values marked in place.
 - **Reconciliation workbench**: two ledgers side by side, matched by rule or by hand.
 - **Permission-aware forms**: fields that say why they are read-only.
 

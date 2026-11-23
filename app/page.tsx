@@ -1,5 +1,6 @@
 import Link from "next/link"
 
+import { AsOfTableDemo } from "@/components/demos/as-of-table-demo"
 import { AuditTimelineDemo } from "@/components/demos/audit-timeline-demo"
 import { MakerCheckerDemo } from "@/components/demos/maker-checker-demo"
 import { MoneyInputDemo } from "@/components/demos/money-input-demo"
@@ -7,7 +8,6 @@ import { Install, SectionLabel } from "@/components/docs"
 import { site } from "@/lib/site"
 
 const roadmap = [
-  { name: "As-of table", body: "A data table that can show any past date, with values that changed since then marked in place." },
   { name: "Reconciliation workbench", body: "Two ledgers side by side, matched by rule or by hand, with the difference always on screen." },
   { name: "Permission-aware forms", body: "Fields that explain why they are read-only, instead of quietly disabling themselves." },
 ]
@@ -21,7 +21,7 @@ export default function Home() {
           The parts of a banking screen that are <span className="accent-word text-brand">easy to get wrong</span>.
         </h1>
         <p className="text-muted-foreground max-w-2xl text-base leading-relaxed sm:text-lg">
-          Tellerline is a small set of accessible components for money, audit trails and approvals. Amounts stay exact
+          Tellerline is a small set of accessible components for money, audit trails, approvals and history. Amounts stay exact
           decimal strings from keystroke to API. Install them with the shadcn CLI and the code is yours to change.
         </p>
         <div className="flex flex-wrap gap-2.5 font-mono text-[13px] sm:gap-3 sm:text-sm">
@@ -94,6 +94,24 @@ export default function Home() {
             </div>
             <MakerCheckerDemo />
           </article>
+          <article className="grid min-w-0 grid-cols-1 gap-x-10 gap-y-4 lg:col-span-2 lg:grid-cols-[minmax(0,2fr)_minmax(0,3fr)] lg:items-start lg:pt-4">
+            <div className="grid min-w-0 grid-cols-1 content-start gap-4 lg:sticky lg:top-8">
+              <div className="flex items-baseline justify-between gap-4">
+                <h3 className="text-lg font-medium">
+                  <Link href="/components/as-of-table" className="hover:underline underline-offset-4">
+                    As-of table
+                  </Link>
+                </h3>
+                <span className="text-muted-foreground font-mono text-xs">server or client</span>
+              </div>
+              <p className="text-muted-foreground leading-relaxed">
+                What did this account look like last Tuesday? Records as they stood at any point in time, with every value that has
+                changed since marked in place and the current one beside it.
+              </p>
+              <Install item="as-of-table" />
+            </div>
+            <AsOfTableDemo />
+          </article>
         </div>
       </section>
 
@@ -124,7 +142,7 @@ export default function Home() {
           </h2>
           <p className="text-muted-foreground">Planned, not built yet.</p>
         </div>
-        <ul className="bg-border grid gap-px overflow-hidden rounded-xl border sm:grid-cols-3">
+        <ul className="bg-border grid gap-px overflow-hidden rounded-xl border sm:grid-cols-2">
           {roadmap.map((item) => (
             <li key={item.name} className="bg-card p-5">
               <p className="font-medium">{item.name}</p>

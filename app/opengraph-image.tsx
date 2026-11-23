@@ -40,10 +40,10 @@ export default async function Image() {
             <span style={{ fontFamily: "Newsreader", fontStyle: "italic", fontWeight: 400, color: "#b0481f", letterSpacing: 0 }}>easy to get wrong</span>
             <span>.</span>
           </div>
-          <div style={{ fontSize: 30, color: "#5f5b53" }}>Accessible React components for money, audit trails and approvals.</div>
+          <div style={{ fontSize: 30, color: "#5f5b53" }}>Accessible React components for money, audit trails, approvals and history.</div>
         </div>
         <div style={{ display: "flex", justifyContent: "space-between", fontSize: 24, color: "#5f5b53" }}>
-          <span>Money Input · Audit Timeline · Maker-checker</span>
+          <span>Money Input · Audit Timeline · Maker-checker · As-of table</span>
           <span>npx shadcn add</span>
         </div>
       </div>

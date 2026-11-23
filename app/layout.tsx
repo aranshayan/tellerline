@@ -45,6 +45,9 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
             <Link href="/components/maker-checker" className="text-muted-foreground hover:text-foreground hidden md:inline">
               Maker-checker
             </Link>
+            <Link href="/components/as-of-table" className="text-muted-foreground hover:text-foreground hidden md:inline">
+              As-of table
+            </Link>
             <a href={site.repo} className="text-muted-foreground hover:text-foreground">
               GitHub
             </a>
