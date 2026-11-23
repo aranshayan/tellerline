@@ -13,7 +13,8 @@ export type AsOfColumn<T extends Row = Row> = {
 }
 
 export type AsOfTableProps<T extends Row = Row> = Omit<React.ComponentProps<"div">, "children"> & {
-  records: HistoryRecord<T>[]
+  // NoInfer: the row type comes from columns, so inline records like "100" then "200" are not read as literal types.
+  records: HistoryRecord<NoInfer<T>>[]
   /** The first column is the row header, so pick one that names the row. */
   columns: AsOfColumn<T>[]
   /** The table's name, read out with it. */

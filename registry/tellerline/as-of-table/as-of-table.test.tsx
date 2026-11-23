@@ -88,6 +88,19 @@ describe("AsOfTable", () => {
     expect(screen.getByText("2 Mar 2026, 23:59").closest("time")).toHaveAttribute("dateTime", "2026-03-02T23:59:59.000Z")
   })
 
+  it("accepts records written inline, where values differ between versions", () => {
+    render(
+      <AsOfTable
+        caption="Inline"
+        timeZone="UTC"
+        asOf="2026-03-02T00:00:00Z"
+        columns={[{ key: "name", header: "Account" }, { key: "limit", header: "Limit", align: "end" }]}
+        records={[{ id: "a", history: [{ at: "2026-03-01T09:00:00Z", set: { name: "Acme", limit: "100" } }, { at: "2026-03-03T09:00:00Z", set: { limit: "200" } }] }]}
+      />,
+    )
+    expect(screen.getByRole("cell")).toHaveTextContent("100, now 200")
+  })
+
   it("says so when nothing existed yet", () => {
     render(table({ asOf: "2026-02-01T00:00:00Z" }))
     expect(screen.getByText("No rows existed at this point.")).toBeInTheDocument()
